@@ -49,11 +49,14 @@ string pointToString(Point p, int precision) {
   return oss.str();
 }
 
-string boxToString(Box b, int precision) {
-  
+string boxToString(Box b, int precision) 
+{
+
+	ostringstream oss;
+	oss << setprecision(precision);
+	oss << "ul=(" << b.ul.x << "," << b.ul.y << "), w=" << b.width << ",h=" << b.height;
+	return oss.str();
   // SAMPLE FORMAT (precision = 2): "ul=(3.4,-5),w=5,h=7"
-  
-  return "stub!"; // TODO: Delete this line and comment and replace with appropriate code
 }
  
 
@@ -85,7 +88,7 @@ bool boxesApproxEqual(Box b1, Box b2, double tolerance) {
 
   // TODO: FILL THIS IN WITH APPROPRIATE CODE
 
-  return false; // STUB!  TODO: Delete this line and comment and replace with appropriate code
+	return (pointsApproxEqual(b1.ul, b2.ul) && fabs(b1.width-b2.width) < tolerance && fabs(b1.height-b2.height) < tolerance);
 }
 
 
@@ -100,11 +103,13 @@ bool boxesApproxEqual(Box b1, Box b2, double tolerance) {
 
 void initBox(struct Box *b, double ulx, double uly, double w, double h)
 {
-  return; // @@@ For a void function a "naked return" is a "do nothing" stub
+	initPoint(&b->ul, ulx, uly);
+	b->width = w;
+	b->height = h;
 }
 
 
 double areaOfBox(Box b) {
-  return -42.0;  /* stub---make sure all tests fail initially */
+	return (b.width*b.height);
   // you can use b.width to access width, and b.height to access height
 }
